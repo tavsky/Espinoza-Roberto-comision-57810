@@ -1,0 +1,20 @@
+{% extends "App1/index.html"%}
+
+
+
+{% block Titulo %}
+<div class="masthead-subheading">Perfil</div>
+<div class="masthead-heading text-uppercase">Editar Perfil</div>
+{% endblock Titulo %}
+
+{% block contenido %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock contenido %}

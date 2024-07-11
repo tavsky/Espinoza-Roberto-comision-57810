@@ -1,0 +1,19 @@
+{% extends "App1/index.html"%}
+
+
+
+{% block Titulo %}
+<div class="masthead-subheading">Stock</div>
+<div class="masthead-heading text-uppercase">Buscar producto</div>
+{% endblock Titulo %}
+
+{% block contenido %}
+    <form action ="{%url 'EncontrarStock'%}" method = "get">
+        {% csrf_token %}
+        <table>
+            <p>Ingresar SKU a buscar: <input type="text" name="buscar" id="buscar"></p>
+        </table>
+        <input type="submit" value="Buscar">
+    </form>
+    
+{% endblock contenido %}

@@ -1,0 +1,69 @@
+{% extends "App1/index.html"%}
+
+
+
+{% block Titulo %}
+<div class="masthead-subheading">Inventario</div>
+<div class="masthead-heading text-uppercase">revisar inventario</div>
+
+{% endblock Titulo %}
+
+{% block contenido %}
+<table>
+  <tr>
+      <td width="200"><h4>Ingresar Stock</h4></td>
+      <td>
+          <a
+          href="{% url 'StockForm' %}"
+          class="btn btn-primary btn-sm"
+          ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+          </a>
+      </td>        
+  </tr>
+  <tr>
+      <td width="200"><h4>Buscar Stock</h4></td>
+      <td>
+          <a
+          href="{% url 'BuscarStock' %}"
+          class="btn btn-primary btn-sm"
+          ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+          </a>
+      </td>        
+  </tr>
+</table>
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th>SKU</th>
+        <th>Nombre_encargado</th>
+        <th>Cantidad</th>
+        <th>Nombre_Producto</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    {%for e in Stock %}
+        <tr>
+            <td>{{e.SKU}}</td>
+            <td>{{e.Nombre_encargado}}</td>
+            <td>{{e.Cantidad}}</td>
+            <td>{{e.Nombre_Producto}}</td>
+            <td>
+              <a
+                href="{% url 'StockUpdate' e.id %}"
+                class="btn btn-primary"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+              </a>
+              <a
+                href="{% url 'StockDelete' e.id %}"
+                class="btn btn-danger"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+              </a>                
+          </td>
+        </tr>
+    {%endfor %}
+      </tbody>
+</table>
+{% endblock contenido %}

@@ -1,0 +1,20 @@
+{% extends "App1/index.html"%}
+
+
+{% block titulo %}
+<div class="masthead-subheading"></div>
+<div class="masthead-heading text-uppercase">Registro</div>                         
+{% endblock titulo %}
+
+
+{% block contenido %}   
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Registrarse">
+</form>
+
+{% endblock contenido %}
+    

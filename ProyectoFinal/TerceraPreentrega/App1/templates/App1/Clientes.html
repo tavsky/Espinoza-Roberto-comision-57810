@@ -1,0 +1,60 @@
+{% extends "App1/index.html"%}
+
+
+
+{% block Titulo %}
+<div class="masthead-subheading">Clientes</div>
+<div class="masthead-heading text-uppercase">ingresar nuevo cliente</div>
+{% endblock Titulo %}
+
+{% block contenido %}
+<table>
+  <tr>
+      <td width="200"><h4>Ingresar Nuevo Cliente</h4></td>
+      <td>
+          <a
+          href="{% url 'ClientesForm' %}"
+          class="btn btn-primary btn-sm"
+          ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+          </a>
+      </td>        
+  </tr>
+</table>
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th>Id</th>  
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Dirección</th>
+        <th>Fecha de nacimiento</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    {%for a in Clientes %}
+        <tr>
+            <td>{{a.id}}</td>          
+            <td>{{a.Nombre}}</td>
+            <td>{{a.email}}</td>
+            <td>{{a.direccion}}</td>
+            <td>{{a.Fecha_Nacimiento}}</td>
+            <td>
+              <a
+              href="{% url 'ClientesUpdate' a.id %}"
+              class="btn btn-primary"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+              </a>
+              <a
+              href="{% url 'ClientesDelete' a.id %}"
+              class="btn btn-danger"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+             </a>
+            </td>
+        </tr>
+    {%endfor %}
+      </tbody>
+</table>
+{% endblock contenido %}

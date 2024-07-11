@@ -1,0 +1,60 @@
+{% extends "App1/index.html"%}
+
+
+
+{% block Titulo %}
+<div class="masthead-subheading">Ventas</div>
+<div class="masthead-heading text-uppercase">ingreso de nuevas ventas</div>
+{% endblock Titulo %}
+
+{% block contenido %}
+<table>
+  <tr>
+      <td width="200"><h4>Ingresar Venta</h4></td>
+      <td>
+          <a
+          href="{% url 'VentasForm' %}"
+          class="btn btn-primary btn-sm"
+          ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+          </a>
+      </td>        
+  </tr>
+</table>
+  <table class="table table-striped">
+      <thead>
+          <tr>
+          <th>SKU</th>
+          <th>Nombre_encargado</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Cliente</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for c in Ventas %}
+          <tr>
+              <td>{{c.SKU}}</td>
+              <td>{{c.Nombre_encargado}}</td>
+              <td>{{c.Cantidad}}</td>
+              <td>{{c.Precio}}</td>
+              <td>{{c.Cliente}}</td>
+              <td>
+                <a
+                href="{% url 'VentasUpdate' c.id %}"
+                class="btn btn-primary"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                href="{% url 'VentasDelete' c.id %}"
+                class="btn btn-danger"
+                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+               </a>
+              </td>
+          </tr>
+      {%endfor %}
+        </tbody>
+  </table>
+{% endblock contenido %}
